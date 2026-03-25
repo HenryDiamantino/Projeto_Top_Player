@@ -18,7 +18,7 @@ export async function buscarPorId(req, res) {
 }
 
 export async function criar(req, res) {
-    const { nome, genero, plataforma } = req.body;
+    const { nome, genero } = req.body;
 
     if (!nome) {
         return res.status(400).json({
@@ -28,12 +28,29 @@ export async function criar(req, res) {
 
     const id = await jogoModel.criarJogo({
         nome,
-        genero,
-        plataforma
+        genero
     });
 
     return res.status(201).json({
         msg: "Jogo criado com sucesso",
         id
+    });
+}
+
+export async function deletar(req, res) {
+    const id = req.params.id;
+
+    const jogo = await jogoModel.buscarPorId(id);
+
+    if (!jogo) {
+        return res.status(404).json({
+            msg: "Jogo não encontrado"
+        });
+    }
+
+    await jogoModel.deletarJogo(id);
+
+    res.json({
+        msg: "Jogo removido com sucesso"
     });
 }

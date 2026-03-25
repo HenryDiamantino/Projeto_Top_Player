@@ -80,7 +80,9 @@ export async function login(req, res) {
 
 export async function deletar(req, res) {
     try {
+        const id = req.params.id;
         const usuarioExiste = await usuarioModel.buscarPorId(req.params.id)
+        const deletar = await usuarioModel.deletarUsuario(id)
 
         if (!usuarioExiste) {
             return res.status(404).json({ msg: "ID não encontrado" });

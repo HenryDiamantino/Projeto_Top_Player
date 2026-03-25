@@ -16,18 +16,18 @@ export async function buscarPorId(req, res) {
 }
 
 export async function criar(req, res) {
-    const { jogador_id, jogo_id, pontuacao } = req.body;
+    const { player_id, jogo_id, pontos } = req.body;
 
-    if (!jogador_id || !jogo_id) {
+    if (!player_id || !jogo_id) {
         return res.status(400).json({
             msg: "jogador_id e jogo_id são obrigatórios"
         });
     }
 
     const id = await partidaModel.criarPartida({
-        jogador_id,
+        player_id,
         jogo_id,
-        pontuacao
+        pontos
     });
 
     res.status(201).json({

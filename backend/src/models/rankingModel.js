@@ -1,7 +1,7 @@
-import { pool } from "../config/db.js";
+import { conexao } from "../config/db.js";
 
 export async function rankingPorJogo(jogo_id, limite = 10) {
-    const [rows] = await pool.query(
+    const [rows] = await conexao.query(
         `
         SELECT jogo_id, jogo_nome, player_id, nickname, plataforma, total_pontos, total_partidas
         FROM vw_ranking_por_jogo
@@ -15,7 +15,7 @@ export async function rankingPorJogo(jogo_id, limite = 10) {
 };
 
 export async function rankingGeral(limite = 10) {
-    const [rows] = await pool.query(
+    const [rows] = await conexao.query(
         `
         SELECT
             pl.id AS player_id,
