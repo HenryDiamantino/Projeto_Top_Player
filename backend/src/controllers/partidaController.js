@@ -20,7 +20,7 @@ export async function criar(req, res) {
 
     if (!player_id || !jogo_id) {
         return res.status(400).json({
-            msg: "jogador_id e jogo_id são obrigatórios"
+            msg: "player_id e jogo_id são obrigatórios"
         });
     }
 
@@ -37,10 +37,10 @@ export async function criar(req, res) {
 }
 
 export async function atualizar(req, res) {
-    const { pontuacao } = req.body;
+    const { pontos } = req.body;
 
     await partidaModel.atualizarPartida(req.params.id, {
-        pontuacao
+        pontos
     });
 
     res.json({ msg: "Atualizada com sucesso" });
