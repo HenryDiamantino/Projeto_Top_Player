@@ -63,7 +63,25 @@ router.get("/:id", playerController.buscar);
 router.post("/", playerController.criar);
 
 
-
+/**
+ * @swagger
+ * /players/{id}:
+ *   put:
+ *     summary: Atualiza um player
+ *     tags: [Players]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID do player
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Player atualizado com sucesso
+ *       404:
+ *         description: Player não encontrado
+ */
 router.put("/:id", playerController.atualizar);
 
 

@@ -38,6 +38,10 @@ router.get("/", usuarioController.listar);
 router.get("/:id", usuarioController.buscarPorId);
 
 
+
+router.put("/:id", usuarioController.atualizar)
+
+
 /**
  * @swagger
  * /usuarios/login:

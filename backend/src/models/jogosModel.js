@@ -24,6 +24,14 @@ export async function criarJogo({ nome, genero }) {
     return resultado.insertId;
 }
 
+export async function atualizarJogo(id, { nome, genero }) {
+    const [rows] = await conexao.query(
+        "UPDATE jogos SET nome = ?, genero = ? WHERE id = ?",
+        [nome, genero, id]
+    );
+    return rows;
+}
+
 export async function deletarJogo(id) {
     await conexao.query(
         "DELETE FROM jogos WHERE id = ?",

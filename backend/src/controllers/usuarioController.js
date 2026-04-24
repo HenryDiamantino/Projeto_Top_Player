@@ -1,3 +1,4 @@
+import { error } from "console";
 import * as usuarioModel from "../models/usuarioModel.js";
 import crypto from "crypto";
 
@@ -40,6 +41,37 @@ export async function criar(req, res) {
         id
     })
 };
+
+export async function atualizar(req, res) {
+    try {
+        const { id } = req.params; // Pegando o ID da URL
+        const { nome, email } = req.body;
+
+        // 1. Validação básica
+        if (!nome || !email) {
+            return res.status(400).json({ msg: "Todos os campos são obrigatórios!" });
+        }
+
+        const usuario = await usuarioModel.buscarPorId(id);
+
+        if (!usuario) {
+            return res.status(404).json({
+                msg: "Usuário não encontrado"
+            });
+        }
+
+        await usuarioModel.atualizarUsuario(id, { nome, email });
+
+        return res.status(200).json({
+            msg: "Usuário atualizado com sucesso",
+        })
+    } catch (error) {
+        return res.status(500).json({
+            msg: "Erro ao atualizar o usuario",
+            error: error.message
+        })
+    }
+}
 
 export async function login(req, res) {
     const { email, senha } = req.body;

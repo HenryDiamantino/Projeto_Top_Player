@@ -25,6 +25,14 @@ export async function criarUsuario({ nome, email, senha_hash }) {
     return rows.insertId;
 };
 
+export async function atualizarUsuario(id, { nome, email }) {
+    const [rows] = await conexao.query(
+        "UPDATE usuarios SET nome = ?, email = ? WHERE id = ?",
+        [nome, email, id]
+    );
+    return rows;
+}
+
 export async function buscarUsuarioPorEmail(email) {
     const [rows] = await conexao.query(
         "SELECT id, nome, email, senha_hash, criado_em FROM usuarios WHERE email = ?",

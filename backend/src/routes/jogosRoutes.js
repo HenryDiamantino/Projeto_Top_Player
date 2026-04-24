@@ -63,6 +63,9 @@ router.get("/:id", jogoController.buscarPorId);
 router.post("/", jogoController.criar);
 
 
+router.put("/:id", jogoController.atualizar);
+
+
 /**
  * @swagger
  * /jogos/{id}:
