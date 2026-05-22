@@ -42,7 +42,7 @@ describe('Testes da API de Jogos', () => {
         const response = await request(app)
             .get(`/jogos/${jogoId}`);
 
-        expect(response.statusCode).toBe(200);
+        expect(response.statusCode).toBe(200); 
     });
 
     test('PUT /jogos/:id deve atualizar um jogo existente', async () => {

@@ -13,7 +13,7 @@ export async function buscarPorId(req, res) {
 
     if (!usuario) {
         return res.status(404).json({ msg: "Usuário não encontrado" });
-    };
+    }
 
     res.json(usuario);
 };
